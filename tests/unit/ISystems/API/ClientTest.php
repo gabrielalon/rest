@@ -1,12 +1,12 @@
 <?php
 
-namespace tests\unit\ISystems\API;
+namespace tests\unit\ISklep\API;
 
-use ISystems\API\Client;
-use ISystems\API\Credentials;
-use ISystems\API\Curl\Request;
-use ISystems\API\Curl\Response;
-use ISystems\API\Exception;
+use ISklep\API\Client;
+use ISklep\API\Credentials;
+use ISklep\API\Curl\Request;
+use ISklep\API\Curl\Response;
+use ISklep\API\Exception;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {

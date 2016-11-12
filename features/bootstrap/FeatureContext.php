@@ -1,18 +1,17 @@
 <?php
 
-namespace ISystems\Behat\Context;
+namespace ISklep\Behat\Context;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Coduo\PHPMatcher\Factory\SimpleFactory;
-use ISystems\API\Client;
-use ISystems\API\ClientFactory;
-use ISystems\API\Credentials;
-use ISystems\API\Mappers\MapperObjectInterface;
-use ISystems\Behat\Context\Traits\PaymentMethodTrait;
-use ISystems\Behat\Context\Traits\ProducerTrait;
-use ISystems\Behat\Context\Traits\StatusTrait;
-use ISystems\Monolog\InMemoryLogger;
+use ISklep\API\Client;
+use ISklep\API\ClientFactory;
+use ISklep\API\Credentials;
+use ISklep\API\Mappers\MapperObjectInterface;
+use ISklep\Behat\Context\Traits\PaymentMethodTrait;
+use ISklep\Behat\Context\Traits\ProducerTrait;
+use ISklep\Behat\Context\Traits\StatusTrait;
 use PHPUnit_Framework_Assert as Asserts;
 
 class FeatureContext

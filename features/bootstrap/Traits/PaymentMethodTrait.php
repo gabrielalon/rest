@@ -1,13 +1,13 @@
 <?php
 
-namespace ISystems\Behat\Context\Traits;
+namespace ISklep\Behat\Context\Traits;
 
 use Behat\Gherkin\Node\TableNode;
-use ISystems\API\Entities\PaymentMethod;
-use ISystems\API\Mappers\ArrayToEntityMapper;
-use ISystems\API\Mappers\MapperObjectInterface;
-use ISystems\API\ServiceFactory;
-use ISystems\API\Services\PaymentMethod as Service;
+use ISklep\API\Entities\PaymentMethod;
+use ISklep\API\Mappers\ArrayToEntityMapper;
+use ISklep\API\Mappers\MapperObjectInterface;
+use ISklep\API\ServiceFactory;
+use ISklep\API\Services\PaymentMethod as Service;
 use PHPUnit_Framework_Assert as Asserts;
 
 trait PaymentMethodTrait

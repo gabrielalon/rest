@@ -10,7 +10,7 @@
   },
   "autoload": {
     "psr-0": {
-      "ISystems": "src/"
+      "ISklep": "src/"
     }
   },
   "autoload-dev": {
@@ -18,7 +18,7 @@
       "tests": "./"
     },
     "psr-4": {
-      "ISystems\\Behat\\Context\\": "features/bootstrap"
+      "ISklep\\Behat\\Context\\": "features/bootstrap"
     }
   },
   "extra": {

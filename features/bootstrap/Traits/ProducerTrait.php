@@ -1,13 +1,13 @@
 <?php
 
-namespace ISystems\Behat\Context\Traits;
+namespace ISklep\Behat\Context\Traits;
 
 use Behat\Gherkin\Node\TableNode;
-use ISystems\API\Entities\Producer;
-use ISystems\API\Mappers\MapperObjectInterface;
-use ISystems\API\ServiceFactory;
-use ISystems\API\Services\Producer as Service;
-use ISystems\API\Mappers\ArrayToEntityMapper;
+use ISklep\API\Entities\Producer;
+use ISklep\API\Mappers\MapperObjectInterface;
+use ISklep\API\ServiceFactory;
+use ISklep\API\Services\Producer as Service;
+use ISklep\API\Mappers\ArrayToEntityMapper;
 use PHPUnit_Framework_Assert as Asserts;
 
 trait ProducerTrait
@@ -71,6 +71,29 @@ trait ProducerTrait
             'Response does not have data.');
         Asserts::assertArrayHasKey('producer', $response['data'],
             'Response does not have producer entity.');
+    }
+
+    /**
+     * @Then I send spoiled POST producer object with data:
+     *
+     * @param TableNode $table
+     */
+    public function createSpoiledProducerWithObject(TableNode $table)
+    {
+        $data = $table->getColumnsHash();
+        $prod = (new Producer())
+            ->setId($data[0]['id'])
+            ->setSourceId($data[0]['source_id'])
+            ->setLogoFilename($data[0]['logo_filename'])
+            ->setName($data[0]['name'])
+            ->setOrdering($data[0]['ordering'])
+            ->setSiteUrl($data[0]['site_url']);
+
+        try {
+            $this
+                ->getProducerService()
+                ->createOne($prod);
+        } catch (\Exception $e) {}
     }
 
     /**

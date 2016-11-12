@@ -4,7 +4,7 @@ default:
             paths:
                 - features/api
             contexts:
-                - ISystems\Behat\Context\FeatureContext:
+                - ISklep\Behat\Context\FeatureContext:
                     - "grzegorz.demos.i-sklep.pl"
                     - "rest"
                     - "vKTUeyrt"

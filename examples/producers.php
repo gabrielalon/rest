@@ -1,12 +1,12 @@
 <?php
 
-use ISystems\API\ClientFactory;
-use ISystems\API\Credentials;
-use ISystems\API\ServiceFactory;
-use ISystems\API\Entities\Producer as ProducerEntity;
-use ISystems\API\Mappers\ArrayToEntityMapper;
-use ISystems\API\Mappers\EntityToArrayMapper;
-use ISystems\Monolog\InMemoryLogger;
+use ISklep\API\ClientFactory;
+use ISklep\API\Credentials;
+use ISklep\API\ServiceFactory;
+use ISklep\API\Entities\Producer as ProducerEntity;
+use ISklep\API\Mappers\ArrayToEntityMapper;
+use ISklep\API\Mappers\EntityToArrayMapper;
+use ISklep\Behat\Context\InMemoryLogger;
 
 $host = 'host'; // set host
 
@@ -78,7 +78,7 @@ $response = $service->createOne($producer);
 
 /**
  * You can write you own mapper it has to implement:
- * ISystems\API\Mappers::MapperObjectInterface
+ * ISklep\API\Mappers::MapperObjectInterface
  */
 
 /**
@@ -98,5 +98,5 @@ $client = ClientFactory::create(
 
 /**
  * You can write you own logger it has to implement:
- * ISystems\Monolog\LoggerInterface
+ * ISklep\Monolog\LoggerInterface
  */

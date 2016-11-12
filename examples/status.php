@@ -1,8 +1,8 @@
 <?php
 
-use ISystems\API\ClientFactory;
-use ISystems\API\Credentials;
-use ISystems\API\ServiceFactory;
+use ISklep\API\ClientFactory;
+use ISklep\API\Credentials;
+use ISklep\API\ServiceFactory;
 
 $host = 'host'; // set host
 

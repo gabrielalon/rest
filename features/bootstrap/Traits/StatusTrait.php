@@ -1,9 +1,9 @@
 <?php
 
-namespace ISystems\Behat\Context\Traits;
+namespace ISklep\Behat\Context\Traits;
 
-use ISystems\API\ServiceFactory;
-use ISystems\API\Services\Status;
+use ISklep\API\ServiceFactory;
+use ISklep\API\Services\Status;
 use PHPUnit_Framework_Assert as Asserts;
 
 trait StatusTrait
