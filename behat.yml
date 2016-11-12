@@ -1,0 +1,12 @@
+default:
+    suites:
+        api:
+            paths:
+                - features/api
+            contexts:
+                - ISystems\Behat\Context\FeatureContext:
+                    - "grzegorz.demos.i-sklep.pl"
+                    - "rest"
+                    - "vKTUeyrt"
+            filters:
+                tags: "@api"
