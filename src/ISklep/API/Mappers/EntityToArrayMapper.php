@@ -24,10 +24,14 @@ class EntityToArrayMapper implements
      */
     public function onResponse($data = [])
     {
-        return array_map(
-            array($this, 'transfer'),
-            $data
-        );
+        if ($this->isCollection($data)) {
+            return array_map(
+                array($this, 'transfer'),
+                $data
+            );
+        }
+
+        return $this->transfer($data);
     }
 
     /**

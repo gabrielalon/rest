@@ -101,6 +101,17 @@ trait MapperObjectTrait
     }
 
     /**
+     * @param array $data
+     *
+     * @return bool
+     */
+    public function isCollection($data = [])
+    {
+        $value = current($data);
+        return is_array($value);
+    }
+
+    /**
      * @param string $string
      * @param bool   $capitalizeFirstCharacter
      *

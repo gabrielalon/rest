@@ -31,9 +31,9 @@ trait StatusTrait
             Asserts::fail($e->getMessage());
         }
 
-        Asserts::assertArrayHasKey('data', $response,
-            'Response does not have data.');
-        Asserts::assertArrayHasKey('status', $response['data'],
-            'Response does not have producer entity.');
+        Asserts::assertArrayHasKey('userLogin', $response,
+            'Response does not have userLogin.');
+        Asserts::assertEquals($this->getCredentials()->getUsername(), $response['userLogin'],
+            'Response does not have valid user.');
     }
 }

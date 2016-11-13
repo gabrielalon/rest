@@ -204,13 +204,14 @@ class Client
         $this->validateResponse($response);
 
         $source = $response->getJsonBody();
+        $data = current($source['data']);
         if ($source['success'] && $this->hasMapper()) {
             // map data on response
-            $source['data'] = $this->getMapper()
-                ->onResponse($source['data']);
+            $data = $this->getMapper()
+                ->onResponse($data);
         }
 
-        return $source;
+        return $data;
     }
 
     /**

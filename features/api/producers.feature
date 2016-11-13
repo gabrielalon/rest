@@ -55,3 +55,17 @@ Feature: iSklep Api producers client component
       "version": "v1"
     }
     """
+
+  Scenario: Get list of Producers
+    When I send request for all producers and map data
+    And the producers response should contain json:
+    """
+    {
+      "data": {
+        "producers": @array@
+      },
+      "error": null,
+      "success": true,
+      "version": "v1"
+    }
+    """

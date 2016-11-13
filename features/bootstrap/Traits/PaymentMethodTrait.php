@@ -30,17 +30,33 @@ trait PaymentMethodTrait
     public function getAllPaymentMethods()
     {
         try {
-            $response = $this
+             $this
                 ->getPaymentMethodService()
                 ->getAll();
         } catch (\Exception $e) {
             Asserts::fail($e->getMessage());
         }
+    }
 
-        Asserts::assertArrayHasKey('data', $response,
-            'Response does not have data.');
-        Asserts::assertArrayHasKey('payment_methods', $response['data'],
-            'Response does not have payment_method entity.');
+    /**
+     * @Then I send request for all payment methods and map data
+     */
+    public function getAllMappedPaymentMethods()
+    {
+        $mapper = new ArrayToEntityMapper(
+            PaymentMethod::class
+        );
+
+        try {
+            $response = $this
+                ->getPaymentMethodService($mapper)
+                ->getAll();
+        } catch (\Exception $e) {
+            Asserts::fail($e->getMessage($mapper));
+        }
+
+        Asserts::assertInstanceOf(PaymentMethod::class, current($response),
+            'Response does not have PaymentMethod entity');
     }
 
     /**
@@ -51,7 +67,7 @@ trait PaymentMethodTrait
     public function createPaymentMethodWithObject(TableNode $table)
     {
         $data = $table->getColumnsHash();
-        $prod = (new PaymentMethod())
+        $payM = (new PaymentMethod())
             ->setId($data[0]['id'])
             ->setAdditionalInfo($data[0]['additional_info'])
             ->setEmailBody($data[0]['email_body'])
@@ -64,15 +80,15 @@ trait PaymentMethodTrait
         try {
             $response = $this
                 ->getPaymentMethodService()
-                ->createOne($prod);
+                ->createOne($payM);
         } catch (\Exception $e) {
             Asserts::fail($e->getMessage());
         }
 
-        Asserts::assertArrayHasKey('data', $response,
-            'Response does not have data.');
-        Asserts::assertArrayHasKey('payment_method', $response['data'],
-            'Response does not have payment_method entity.');
+        Asserts::assertArrayHasKey('name', $response,
+            'Response does not have name.');
+        Asserts::assertEquals($payM->getName(), $response['name'],
+            'PaymentMethod does not have same name.');
     }
 
     /**
@@ -95,11 +111,9 @@ trait PaymentMethodTrait
             Asserts::fail($e->getMessage());
         }
 
-        Asserts::assertArrayHasKey('data', $response,
-            'Response does not have data.');
-        Asserts::assertArrayHasKey('payment_method', $response['data'],
-            'Response does not have payment_method entity.');
-        Asserts::assertInstanceOf(PaymentMethod::class, $response['data']['payment_method'],
-            'Response does not have payment_method entity object.');
+        Asserts::assertInstanceOf(PaymentMethod::class, $response,
+            'Response does not have PaymentMethod entity object.');
+        Asserts::assertEquals($data['name'], $response->getName(),
+            'PaymentMethod does not have same name.');
     }
 }

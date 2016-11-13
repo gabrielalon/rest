@@ -59,3 +59,17 @@ Feature: iSklep Api payment_method client component
       "version": "v1"
     }
     """
+
+  Scenario: Get list of Payment methods
+    When I send request for all payment methods and map data
+    And the payment_methods response should contain json:
+    """
+    {
+      "data": {
+        "payment_methods": @array@
+      },
+      "error": null,
+      "success": true,
+      "version": "v1"
+    }
+    """

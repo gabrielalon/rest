@@ -30,17 +30,33 @@ trait ProducerTrait
     public function getAllProducers()
     {
         try {
-            $response = $this
+             $this
                 ->getProducerService()
                 ->getAll();
         } catch (\Exception $e) {
             Asserts::fail($e->getMessage());
         }
+    }
 
-        Asserts::assertArrayHasKey('data', $response,
-            'Response does not have data.');
-        Asserts::assertArrayHasKey('producers', $response['data'],
-            'Response does not have producer entity.');
+    /**
+     * @Then I send request for all producers and map data
+     */
+    public function getAllMappedProducers()
+    {
+        $mapper = new ArrayToEntityMapper(
+            Producer::class
+        );
+
+        try {
+            $response = $this
+                ->getProducerService($mapper)
+                ->getAll();
+        } catch (\Exception $e) {
+            Asserts::fail($e->getMessage());
+        }
+
+        Asserts::assertInstanceOf(Producer::class, current($response),
+            'Response does not have Producer entity');
     }
 
     /**
@@ -67,10 +83,10 @@ trait ProducerTrait
             Asserts::fail($e->getMessage());
         }
 
-        Asserts::assertArrayHasKey('data', $response,
-            'Response does not have data.');
-        Asserts::assertArrayHasKey('producer', $response['data'],
-            'Response does not have producer entity.');
+        Asserts::assertArrayHasKey('name', $response,
+            'Response does not have name.');
+        Asserts::assertEquals($prod->getName(), $response['name'],
+            'Producer does not have same name.');
     }
 
     /**
@@ -118,11 +134,9 @@ trait ProducerTrait
             Asserts::fail($e->getMessage());
         }
 
-        Asserts::assertArrayHasKey('data', $response,
-            'Response does not have data.');
-        Asserts::assertArrayHasKey('producer', $response['data'],
-            'Response does not have producer entity.');
-        Asserts::assertInstanceOf(Producer::class, $response['data']['producer'],
+        Asserts::assertInstanceOf(Producer::class, $response,
             'Response does not have producer entity object.');
+        Asserts::assertEquals($data['name'], $response->getName(),
+            'Producer does not have same name.');
     }
 }
