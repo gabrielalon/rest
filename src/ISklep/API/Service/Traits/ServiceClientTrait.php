@@ -1,6 +1,6 @@
 <?php
 
-namespace ISklep\API\Services\Traits;
+namespace ISklep\API\Service\Traits;
 
 use ISklep\API\Client;
 

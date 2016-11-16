@@ -8,7 +8,7 @@ use Coduo\PHPMatcher\Factory\SimpleFactory;
 use ISklep\API\Client;
 use ISklep\API\ClientFactory;
 use ISklep\API\Credentials;
-use ISklep\API\Mappers\MapperObjectInterface;
+use ISklep\API\Mapper\MapperObjectInterface;
 use ISklep\Behat\Context\Traits\PaymentMethodTrait;
 use ISklep\Behat\Context\Traits\ProducerTrait;
 use ISklep\Behat\Context\Traits\StatusTrait;
@@ -90,11 +90,9 @@ class FeatureContext
     }
 
     /**
-     * @param MapperObjectInterface|null $mapper
-     *
      * @return Client
      */
-    public function getClient($mapper = null)
+    public function getClient()
     {
         $logger = new InMemoryLogger();
         $logger->clear();
@@ -102,7 +100,6 @@ class FeatureContext
         return ClientFactory::create(
             $this->getHost(),
             $this->getCredentials(),
-            $mapper,
             $logger
         );
     }

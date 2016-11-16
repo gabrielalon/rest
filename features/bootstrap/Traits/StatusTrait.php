@@ -3,7 +3,7 @@
 namespace ISklep\Behat\Context\Traits;
 
 use ISklep\API\ServiceFactory;
-use ISklep\API\Services\Status;
+use ISklep\API\Service\Status;
 use PHPUnit_Framework_Assert as Asserts;
 
 trait StatusTrait
@@ -13,9 +13,8 @@ trait StatusTrait
      */
     public function getStatusService()
     {
-        return ServiceFactory::status(
-            $this->getClient()
-        );
+        return ServiceFactory::status()
+            ->setClient($this->getClient());
     }
 
     /**

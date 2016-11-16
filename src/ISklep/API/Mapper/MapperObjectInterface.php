@@ -1,6 +1,6 @@
 <?php
 
-namespace ISklep\API\Mappers;
+namespace ISklep\API\Mapper;
 
 use ISklep\API\Entities\EntityObjectInterface;
 

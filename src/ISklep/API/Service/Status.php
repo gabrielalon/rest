@@ -1,23 +1,18 @@
 <?php
 
-namespace ISklep\API\Services;
+namespace ISklep\API\Service;
 
 use ISklep\API\Curl\Request;
-use ISklep\API\Services\Traits\ServiceClientTrait;
 
-class Status implements
-    ServiceObjectInterface
+class Status extends AbstractService
 {
-    use ServiceClientTrait;
-
     /**
      * @return array
      */
     public function getStatus()
     {
         return $this
-            ->getClient()
-            ->process(
+            ->run(
                 'status',
                 Request::METHOD_GET
             );

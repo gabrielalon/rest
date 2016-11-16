@@ -2,42 +2,33 @@
 
 namespace ISklep\API;
 
-use ISklep\API\Services\PaymentMethod;
-use ISklep\API\Services\Producer;
-use ISklep\API\Services\Status;
+use ISklep\API\Service\PaymentMethod;
+use ISklep\API\Service\Producer;
+use ISklep\API\Service\Status;
 
 class ServiceFactory
 {
     /**
-     * @param Client $client
-     *
      * @return Producer
      */
-    public static function producer(Client $client)
+    public static function producer()
     {
-        return (new Producer())
-            ->setClient($client);
+        return new Producer();
     }
 
     /**
-     * @param Client $client
-     *
      * @return Status
      */
-    public static function status(Client $client)
+    public static function status()
     {
-        return (new Status())
-            ->setClient($client);
+        return new Status();
     }
 
     /**
-     * @param Client $client
-     *
      * @return PaymentMethod
      */
-    public static function paymentMethod(Client $client)
+    public static function paymentMethod()
     {
-        return (new PaymentMethod())
-            ->setClient($client);
+        return new PaymentMethod();
     }
 }

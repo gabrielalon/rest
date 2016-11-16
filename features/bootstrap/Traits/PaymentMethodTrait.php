@@ -4,10 +4,10 @@ namespace ISklep\Behat\Context\Traits;
 
 use Behat\Gherkin\Node\TableNode;
 use ISklep\API\Entities\PaymentMethod;
-use ISklep\API\Mappers\ArrayToEntityMapper;
-use ISklep\API\Mappers\MapperObjectInterface;
+use ISklep\API\Mapper\ArrayToEntityMapper;
+use ISklep\API\Mapper\MapperObjectInterface;
 use ISklep\API\ServiceFactory;
-use ISklep\API\Services\PaymentMethod as Service;
+use ISklep\API\Service\PaymentMethod as Service;
 use PHPUnit_Framework_Assert as Asserts;
 
 trait PaymentMethodTrait
@@ -19,9 +19,9 @@ trait PaymentMethodTrait
      */
     public function getPaymentMethodService($mapper = null)
     {
-        return ServiceFactory::paymentMethod(
-            $this->getClient($mapper)
-        );
+        return ServiceFactory::paymentMethod()
+            ->setClient($this->getClient())
+            ->setMapper($mapper);
     }
 
     /**

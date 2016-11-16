@@ -1,6 +1,6 @@
 <?php
 
-namespace ISklep\API\Mappers\Traits;
+namespace ISklep\API\Mapper\Traits;
 
 use ISklep\API\Entities\EntityObjectInterface;
 

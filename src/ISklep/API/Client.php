@@ -4,8 +4,6 @@ namespace ISklep\API;
 
 use ISklep\API\Curl\Request;
 use ISklep\API\Curl\Response;
-use ISklep\API\Mappers\EntityToArrayMapper;
-use ISklep\API\Mappers\MapperObjectInterface;
 
 class Client
 {
@@ -20,11 +18,6 @@ class Client
      * @var Credentials
      */
     protected $credentials;
-
-    /**
-     * @var MapperObjectInterface
-     */
-    protected $mapper;
 
     /**
      * @var LoggerInterface
@@ -72,38 +65,6 @@ class Client
     }
 
     /**
-     * @return MapperObjectInterface
-     */
-    public function getMapper()
-    {
-        return $this->mapper;
-    }
-
-    /**
-     * @param MapperObjectInterface|null $mapper
-     *
-     * @return $this
-     */
-    public function setMapper($mapper = null)
-    {
-        if (!$mapper instanceof MapperObjectInterface) {
-            $mapper = $this->getDefaultMapper();
-        }
-
-        $this->mapper = $mapper;
-
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function hasMapper()
-    {
-        return $this->getMapper() instanceof MapperObjectInterface;
-    }
-
-    /**
      * @return LoggerInterface
      */
     public function getLogger()
@@ -129,14 +90,6 @@ class Client
     public function hasLogger()
     {
         return $this->getLogger() instanceof LoggerInterface;
-    }
-
-    /**
-     * @return EntityToArrayMapper
-     */
-    public function getDefaultMapper()
-    {
-        return new EntityToArrayMapper();
     }
 
     /**
@@ -172,18 +125,12 @@ class Client
     /**
      * @param string $query
      * @param string $method
-     * @param null   $data
+     * @param array  $data
      *
      * @return array
      */
-    public function process($query, $method, $data = null)
+    public function send($query, $method, array $data = [])
     {
-        if (!is_null($data) && $this->hasMapper()) {
-            // map data on request
-            $data = $this->getMapper()
-                ->onRequest($data);
-        }
-
         $data_string = json_encode($data);
 
         // logging the request
@@ -204,14 +151,7 @@ class Client
         $this->validateResponse($response);
 
         $source = $response->getJsonBody();
-        $data = current($source['data']);
-        if ($source['success'] && $this->hasMapper()) {
-            // map data on response
-            $data = $this->getMapper()
-                ->onResponse($data);
-        }
-
-        return $data;
+        return current($source['data']);
     }
 
     /**

@@ -52,6 +52,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $response->method('hasError')->willReturn(true);
 
-        $client->process('status', Request::METHOD_GET);
+        $client->send('status', Request::METHOD_GET);
     }
 }

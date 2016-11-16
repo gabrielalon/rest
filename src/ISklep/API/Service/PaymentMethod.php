@@ -1,15 +1,11 @@
 <?php
 
-namespace ISklep\API\Services;
+namespace ISklep\API\Service;
 
 use ISklep\API\Curl\Request;
-use ISklep\API\Services\Traits\ServiceClientTrait;
 
-class PaymentMethod implements
-    ServiceObjectInterface
+class PaymentMethod extends AbstractService
 {
-    use ServiceClientTrait;
-
     /**
      * @param $data
      *
@@ -18,8 +14,7 @@ class PaymentMethod implements
     public function createOne($data)
     {
         return $this
-            ->getClient()
-            ->process(
+            ->run(
                 'payment_methods',
                 Request::METHOD_POST,
                 $data
@@ -34,8 +29,7 @@ class PaymentMethod implements
     public function updateOne($data)
     {
         return $this
-            ->getClient()
-            ->process(
+            ->run(
                 'payment_methods',
                 Request::METHOD_PUT,
                 $data
@@ -50,8 +44,7 @@ class PaymentMethod implements
     public function deleteOne($id)
     {
         return $this
-            ->getClient()
-            ->process(
+            ->run(
                 'payment_methods/' . $id,
                 Request::METHOD_DELETE
             );
@@ -65,8 +58,7 @@ class PaymentMethod implements
     public function getOne($id)
     {
         return $this
-            ->getClient()
-            ->process(
+            ->run(
                 'payment_methods/' . $id,
                 Request::METHOD_GET
             );
@@ -78,8 +70,7 @@ class PaymentMethod implements
     public function getAll()
     {
         return $this
-            ->getClient()
-            ->process(
+            ->run(
                 'payment_methods',
                 Request::METHOD_GET
             );

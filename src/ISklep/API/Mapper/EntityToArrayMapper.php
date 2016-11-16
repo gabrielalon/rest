@@ -1,8 +1,8 @@
 <?php
 
-namespace ISklep\API\Mappers;
+namespace ISklep\API\Mapper;
 
-use ISklep\API\Mappers\Traits\MapperObjectTrait;
+use ISklep\API\Mapper\Traits\MapperObjectTrait;
 
 class EntityToArrayMapper implements
     MapperObjectInterface

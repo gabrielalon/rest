@@ -4,10 +4,10 @@ namespace ISklep\Behat\Context\Traits;
 
 use Behat\Gherkin\Node\TableNode;
 use ISklep\API\Entities\Producer;
-use ISklep\API\Mappers\MapperObjectInterface;
+use ISklep\API\Mapper\MapperObjectInterface;
 use ISklep\API\ServiceFactory;
-use ISklep\API\Services\Producer as Service;
-use ISklep\API\Mappers\ArrayToEntityMapper;
+use ISklep\API\Service\Producer as Service;
+use ISklep\API\Mapper\ArrayToEntityMapper;
 use PHPUnit_Framework_Assert as Asserts;
 
 trait ProducerTrait
@@ -19,9 +19,9 @@ trait ProducerTrait
      */
     public function getProducerService($mapper = null)
     {
-        return ServiceFactory::producer(
-            $this->getClient($mapper)
-        );
+        return ServiceFactory::producer()
+            ->setClient($this->getClient())
+            ->setMapper($mapper);
     }
 
     /**

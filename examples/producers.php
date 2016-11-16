@@ -4,8 +4,8 @@ use ISklep\API\ClientFactory;
 use ISklep\API\Credentials;
 use ISklep\API\ServiceFactory;
 use ISklep\API\Entities\Producer as ProducerEntity;
-use ISklep\API\Mappers\ArrayToEntityMapper;
-use ISklep\API\Mappers\EntityToArrayMapper;
+use ISklep\API\Mapper\ArrayToEntityMapper;
+use ISklep\API\Mapper\EntityToArrayMapper;
 use ISklep\Behat\Context\InMemoryLogger;
 
 $host = 'host'; // set host
@@ -22,7 +22,8 @@ $client = ClientFactory::create(
 );
 
 // init producer service
-$service = ServiceFactory::producer($client);
+$service = ServiceFactory::producer()
+    ->setClient($client);
 
 // return all producers, response is array like in doc
 $response = $service->getAll();
@@ -39,12 +40,13 @@ $mapper = new ArrayToEntityMapper(
 // set up API client
 $client = ClientFactory::create(
     $host,
-    $credentials,
-    $mapper
+    $credentials
 );
 
 // init producer service
-$service = ServiceFactory::producer($client);
+$service = ServiceFactory::producer()
+    ->setClient($client)
+    ->setMapper($mapper);
 
 $response = $service->createOne([
     'id' => 1129,
@@ -63,12 +65,13 @@ $mapper = new EntityToArrayMapper();
 // set up API client
 $client = ClientFactory::create(
     $host,
-    $credentials,
-    $mapper
+    $credentials
 );
 
 // init producer service
-$service = ServiceFactory::producer($client);
+$service = ServiceFactory::producer()
+    ->setClient($client)
+    ->setMapper($mapper);
 
 $producer = (new ProducerEntity())
     ->setId(1129)
@@ -78,7 +81,7 @@ $response = $service->createOne($producer);
 
 /**
  * You can write you own mapper it has to implement:
- * ISklep\API\Mappers::MapperObjectInterface
+ * ISklep\API\Mapper::MapperObjectInterface
  */
 
 /**
@@ -92,11 +95,10 @@ $logger = new InMemoryLogger();
 $client = ClientFactory::create(
     $host,
     $credentials,
-    null,
     $logger
 );
 
 /**
  * You can write you own logger it has to implement:
- * ISklep\Monolog\LoggerInterface
+ * ISklep\API\LoggerInterface
  */

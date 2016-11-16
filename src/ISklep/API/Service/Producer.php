@@ -1,23 +1,18 @@
 <?php
 
-namespace ISklep\API\Services;
+namespace ISklep\API\Service;
 
 use ISklep\API\Curl\Request;
-use ISklep\API\Services\Traits\ServiceClientTrait;
 
-class Producer implements
-    ServiceObjectInterface
+class Producer extends AbstractService
 {
-    use ServiceClientTrait;
-
     /**
      * @return array
      */
     public function getAll()
     {
         return $this
-            ->getClient()
-            ->process(
+            ->run(
                 'producers',
                 Request::METHOD_GET
             );
@@ -31,8 +26,7 @@ class Producer implements
     public function createOne($data)
     {
         return $this
-            ->getClient()
-            ->process(
+            ->run(
                 'producers',
                 Request::METHOD_POST,
                 $data

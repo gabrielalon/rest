@@ -1,6 +1,6 @@
 <?php
 
-namespace ISklep\API\Mappers;
+namespace ISklep\API\Mapper;
 
 class ArrayToEntityMapper extends EntityToArrayMapper
 {
