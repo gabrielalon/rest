@@ -18,7 +18,8 @@ $client = ClientFactory::create(
 );
 
 // init status service
-$status = ServiceFactory::status($client);
+$status = ServiceFactory::status()
+    ->setClient($client);
 
 // call gate
 $response = $status->getStatus(); // response is array like in doc
