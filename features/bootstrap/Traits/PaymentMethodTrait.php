@@ -3,7 +3,7 @@
 namespace ISklep\Behat\Context\Traits;
 
 use Behat\Gherkin\Node\TableNode;
-use ISklep\API\Entities\PaymentMethod;
+use ISklep\API\Entity\PaymentMethod;
 use ISklep\API\Mapper\ArrayToEntityMapper;
 use ISklep\API\Mapper\MapperObjectInterface;
 use ISklep\API\ServiceFactory;

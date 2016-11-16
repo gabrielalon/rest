@@ -1,6 +1,6 @@
 <?php
 
-namespace ISklep\API\Entities\Traits;
+namespace ISklep\API\Entity\Traits;
 
 trait EntityObjectTrait
 {

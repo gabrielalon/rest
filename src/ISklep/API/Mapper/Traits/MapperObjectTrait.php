@@ -2,7 +2,7 @@
 
 namespace ISklep\API\Mapper\Traits;
 
-use ISklep\API\Entities\EntityObjectInterface;
+use ISklep\API\Entity\EntityObjectInterface;
 
 trait MapperObjectTrait
 {

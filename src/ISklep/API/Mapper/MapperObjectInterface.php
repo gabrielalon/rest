@@ -2,7 +2,7 @@
 
 namespace ISklep\API\Mapper;
 
-use ISklep\API\Entities\EntityObjectInterface;
+use ISklep\API\Entity\EntityObjectInterface;
 
 interface MapperObjectInterface
 {

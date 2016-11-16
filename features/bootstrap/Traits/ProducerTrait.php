@@ -3,7 +3,7 @@
 namespace ISklep\Behat\Context\Traits;
 
 use Behat\Gherkin\Node\TableNode;
-use ISklep\API\Entities\Producer;
+use ISklep\API\Entity\Producer;
 use ISklep\API\Mapper\MapperObjectInterface;
 use ISklep\API\ServiceFactory;
 use ISklep\API\Service\Producer as Service;

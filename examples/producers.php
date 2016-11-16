@@ -3,7 +3,7 @@
 use ISklep\API\ClientFactory;
 use ISklep\API\Credentials;
 use ISklep\API\ServiceFactory;
-use ISklep\API\Entities\Producer as ProducerEntity;
+use ISklep\API\Entity\Producer as ProducerEntity;
 use ISklep\API\Mapper\ArrayToEntityMapper;
 use ISklep\API\Mapper\EntityToArrayMapper;
 use ISklep\Behat\Context\InMemoryLogger;

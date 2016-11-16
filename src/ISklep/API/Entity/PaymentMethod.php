@@ -1,8 +1,8 @@
 <?php
 
-namespace ISklep\API\Entities;
+namespace ISklep\API\Entity;
 
-use ISklep\API\Entities\Traits\EntityObjectTrait;
+use ISklep\API\Entity\Traits\EntityObjectTrait;
 
 class PaymentMethod implements EntityObjectInterface
 {

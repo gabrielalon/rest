@@ -1,6 +1,6 @@
 <?php
 
-namespace ISklep\API\Entities;
+namespace ISklep\API\Entity;
 
 interface EntityObjectInterface
 {
